@@ -78,7 +78,17 @@ for host<br />
 gcc main.c -o app
 ```
 for target<br />
+```
+export PATH=~/x-tools/armv7-rpi2-linux-gnueabihf/bin/:$PATH
+```
+type `armv` and hit `tab` and let your host autocomplete it. <br />
+```
+armv7-rpi2-linux-gnueabihf-gcc main.c -o app-arm --static
+```
+#### 6.4 Run Compiled Programms
 
+for host `./app`<br />
+for target `./app-arm` <br />
 
 
 
