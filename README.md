@@ -49,14 +49,38 @@ ls ../crosstool-ng/testing/docker/ubuntu21.10/Dockerfile
 make -j12
 ```
 > `-j` shows the number of jobs<br />
-
+> If everything is ok you have to see the generated compilers in the following link
+>> `~/x-tools/armv7-rpi2-linux-gnueabihf/bin`<br />
 ### 6. Test the installation<br />
 you have to install `qemu`, `qemu` is an emulator which allows you to emulate your target using your host.
+#### 6.1 install qemu
+cd to rpi directory
 ```
+cd ..
 sudo apt update
 sudo apt install qemu-user
-
 ```
+#### 6.2 create some .c programm
+```
+gedit main.c
+********* text inside *********
+#include<sdtio.h>
+int main()
+{
+ printf("hello world\n");
+ return 0;
+}
+*******************************
+```
+#### 6.3 Compile it
+for host<br />
+```
+gcc main.c -o app
+```
+for target<br />
+
+
+
 
 when you want ot make the kernel image, some times may you face with 
 `sudo apt-get install libmpc-dev` after you type `make -j12` for example 
