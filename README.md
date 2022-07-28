@@ -118,6 +118,19 @@ make
 > If everything is ok you have to see `u-boot` in the `./u-boot` directory <br />
 
 ## Prepare SD card for booting target 
+```
+cd ..
+mkdir sdcard
+```
+Download the Content of SD card in thid repo and paste them into the `sdcard` folder.<br />
+
+
+
+
+
+
+
+
 
 when you want ot make the kernel image, some times may you face with 
 `sudo apt-get install libmpc-dev` after you type `make -j12` for example 
