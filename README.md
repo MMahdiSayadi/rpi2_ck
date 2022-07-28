@@ -14,17 +14,43 @@ Here you have to options:
 ### Build the Cross-Compiler
 
 Steps: 
-1. Make rpi directory
+1. Make rpi directory<br />
 
 `mkdir rpi2` 
 
-3. Downlaod the Crosstool-ng 
+3. Downlaod the Crosstool-ng (here we use release-1.25.0-rc1)<br />
+```
+cd rpi2
+wget http://crosstool-ng.org/download/crosstool-ng/crosstool-ng-1.25.0_rc1.tar.xz
+tar -xf crosstool-ng-1.25.0_rc1.tar.xz
+mv crosstool-ng-1.25.0_rc1.tar.xz crosstool-ng
+```
 
-`wget https://crosstool-ng.github.io/2022/03/24/release-1.25.0-rc1.html`
+3. Install Crosstool-ng dependencies <br />
+you can see the requirements in the `Dockerfile` came in below<br />
+```
+cd crosstool-ng 
+ls ../crosstool-ng/testing/docker/ubuntu21.10/Dockerfile
+```
+3. Build Crosstool-ng <br />
+```
+./bootstrap
+./configure --enable-local
+./make 
+```
+4. Build Cross Compiler using Crosstool-ng <br />
+```
+./ct-ng list-samples|grep rpi2
+./ct-ng armv7-rpi2-linux-gnueabihf
+./ct-ng menuconfig
+```
+> In the opened menucofnig in the `c-library` --> `Minimum Supported Kernel version` activate `let ./config decide`, and save changes.<br />
+```
+make -j12
+```
+> `-j` shows the number of jobs<br />
 
-3. Build CrossCompiler using Crosstool-ng 
-
-
+5. Test the installation<br />
 
 
 when you want ot make the kernel image, some times may you face with 
