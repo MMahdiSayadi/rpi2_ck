@@ -90,7 +90,34 @@ armv7-rpi2-linux-gnueabihf-gcc main.c -o app-arm --static
 for host `./app`<br />
 for target `./app-arm` <br />
 
+## Download prebuild Cross-Compiler
 
+```
+sudo apt-get update
+sudo apt-get install gcc-arm-linux-gnueabihf
+```
+> All the processes for this part is similar to part one, except build it, and export path. <br />
+> Here you do not need to export path because the compiler instslled on the default directory of you linux.<br />
+
+## Build a Bootloader
+
+### Download and install Bootloader
+```
+wget https://source.denx.de/u-boot/u-boot/-/archive/master/u-boot-master.tar.gz
+tar -xf u-boot-master.tar.gz
+mv u-boot-master u-boot
+cd u-boot
+ls configs|grep rpi \\here we use rpi2-defconfig
+make rpi_2_defconfig
+export PATH=~/x-tools/armv7-rpi2-linux-gnueabihf/bin/:$PATH
+export CROSS_COMPILE=armv7-rpi2-linux-gnueabihf-
+echo $CROSS_COMPILE \\ it should be equal to armv7-rpi2-linux-gnueabihf-
+make menuconfig
+make
+```
+> If everything is ok you have to see `u-boot` in the `./u-boot` directory <br />
+
+## Prepare SD card for booting target 
 
 when you want ot make the kernel image, some times may you face with 
 `sudo apt-get install libmpc-dev` after you type `make -j12` for example 
