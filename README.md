@@ -206,6 +206,7 @@ setenv serverip 192.168.1.101
 setenv netmask 255.255.255.0
 setenv ipaddr 192.168.1.60
 setenv bootcmd 'fatload mmc 0:1 ${kernel_addr_r} Image; load mmc 0:1 ${fdt_addr_r} bcm2711-rpi-4-b.dtb; booti ${kernel_addr_r} - ${fdt_addr}'
+setenv bootargs console=ttyS0,115200 8250.nr_uarts=1 swiotlb=128 root=/dev/nfs ip=192.168.1.60 nfsroot=192.168.1.101:/mnt/rootfs,nfsvers=3,tcp init=/myinit rw
 saveenv 
 res
 ```
