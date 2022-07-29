@@ -163,10 +163,20 @@ res \\ to restart
 ```
 
 # 3. Build Kernel
+### If you use your own Cross compiler
+```
+wget https://github.com/raspberrypi/linux/archive/refs/heads/rpi-5.15.y.zip 
+unzip rpi-5.15.y.zip 
+cd linux-rpi-5.15.y
+export ARCH=arm
+export PATH=~/x-tools/armv7-rpi2-linux-gnueabihf/bin/:$PATH
+export CROSS_COMPILE=armv7-rpi2-linux-gnueabihf-
+ls arch/arm/config
+```
+### If you use pre built cross compiler
 
-
-
-
+you don't need to add the path only you need to add compiler<br />
+export CROSS_COMPILE=arm-linux-gnueabihf-
 
 
 
