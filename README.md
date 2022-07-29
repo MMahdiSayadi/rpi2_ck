@@ -116,14 +116,24 @@ make menuconfig
 make
 ```
 > If everything is ok you have to see `u-boot` in the `./u-boot` directory <br />
+> If you use from pre built cross compiler you do not need to add path.
 
 ## Prepare SD card for booting target 
 ```
 cd ..
 mkdir sdcard
+cd sdcard
+cp ../u-boot/u-boot.bin .
 ```
 Download the Content of SD card in thid repo and paste them into the `sdcard` folder.<br />
+now your folder content must be<br />
+`bootcode.bin fixup.dat config.txt start.elf bcm2709-rpi-2-b.dtb u-boot.bin`
 
+### Test bootloader Prepare SD card
+here you have create a 50MiB Fat32 partition on the SD card and paste generated data on it. (here our SD card is `/dev/sdb`)<br />
+```
+
+```
 
 
 
