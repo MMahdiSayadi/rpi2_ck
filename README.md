@@ -132,8 +132,25 @@ now your folder content must be<br />
 ### Test bootloader Prepare SD card
 here you have create a 50MiB Fat32 partition on the SD card and paste generated data on it. (here our SD card is `/dev/sdb`)<br />
 ```
-
+\\ connect the sd card to your computer
+sudo umount /dev/sdb*
+sudo cfdisk /dev/sdb
+\\ create 50M FAT32 partition which is also bootable
+sudo mkfs.vfat /dev/sdb1
+cd ..
+mkdir mntp
+sudo mount /dev/sdb1 mntp
+sudo cp -r /sdcard/* mntp
+sudo umount mntp
 ```
+eject the SD card and connect it to board and turn on your board. 
+you have to see the bootloader. 
+
+
+
+
+
+
 
 
 
