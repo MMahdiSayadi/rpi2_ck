@@ -214,7 +214,7 @@ res
 ```
 if everythis is ok you have to see `kernel panic error`.
 
-# 4. Busubox as initfile
+# 4. Busybox as init file
 ```
 cd rpi2
 mkdir rootfs
