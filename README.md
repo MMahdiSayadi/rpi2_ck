@@ -146,6 +146,22 @@ sudo umount mntp
 eject the SD card and connect it to board and turn on your board. 
 you have to see the bootloader. 
 
+### Some command for testing target
+```
+picocom -b 115200 /dev/ttyUSB0 \\ to see bootloader command in your terminal
+setenv serverip 192.168.1.101
+setenv netmask 255.255.255.0
+setenv ipaddr 192.168.1.60
+saveenv
+printenv serverip
+printsenv netmask
+prinenv ipaddr
+ping 192.168.1.101 \\ you have to see sever is alive
+ls mmc 0:1
+fatls mmc 0:1  \\ 0 shows device number, 1 shows partition number
+res \\ to restart
+```
+
 
 
 
