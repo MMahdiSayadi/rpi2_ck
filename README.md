@@ -187,7 +187,28 @@ make -j12
 
 your generated kernel image is in `/arch/arm/boot`
 
-
+### Loading Kernel
+Connect your SD card to your host
+```
+cd sdcard 
+sudo cp -r ../linux-rpi-5.15.y/arch/arm/boot/Image .
+sudo umount /dev/sdb*
+cd ..
+sudo mount /dev/sdb1 mntp
+sudo cp sdcard/Image mntp
+sudo umount mntp
+```
+Eject SD card and connect it to the target 
+#### target part
+```
+sudo picocom -b 115200 /dev/ttyUSB0
+setenv serverip 192.168.1.101
+setenv netmask 255.255.255.0
+setenv ipaddr 192.168.1.60
+setenv bootcmd 'fatload mmc 0:1 ${kernel_addr_r} Image; load mmc 0:1 ${fdt_addr_r} bcm2711-rpi-4-b.dtb; booti ${kernel_addr_r} - ${fdt_addr}'
+saveenv 
+res
+```
 
 
 
