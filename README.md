@@ -5,7 +5,7 @@ rpi2 custom kernel
 Extra Details came in the rpi repo, and this is the summery of how you can build a custom kernel for rpi2.
 
 
-## 1. Build a Cross Compiler
+# 1. Build a Cross Compiler
 
 Here you have to options: 
   * 1. Build your own Cross-Compiler
@@ -99,7 +99,7 @@ sudo apt-get install gcc-arm-linux-gnueabihf
 > All the processes for this part is similar to part one, except build it, and export path. <br />
 > Here you do not need to export path because the compiler instslled on the default directory of you linux.<br />
 
-## Build a Bootloader
+ 2.# Build a Bootloader
 
 ### Download and install Bootloader
 ```
@@ -162,7 +162,7 @@ fatls mmc 0:1  \\ 0 shows device number, 1 shows partition number
 res \\ to restart
 ```
 
-
+# 3. Build Kernel
 
 
 
