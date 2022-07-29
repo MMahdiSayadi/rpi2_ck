@@ -163,20 +163,29 @@ res \\ to restart
 ```
 
 # 3. Build Kernel
-### If you use your own Cross compiler
+
 ```
 wget https://github.com/raspberrypi/linux/archive/refs/heads/rpi-5.15.y.zip 
 unzip rpi-5.15.y.zip 
 cd linux-rpi-5.15.y
 export ARCH=arm
+\\ if you use from your compiler
 export PATH=~/x-tools/armv7-rpi2-linux-gnueabihf/bin/:$PATH
 export CROSS_COMPILE=armv7-rpi2-linux-gnueabihf-
-ls arch/arm/config
-```
-### If you use pre built cross compiler
-
-you don't need to add the path only you need to add compiler<br />
+\\ if you use from prebuilt compiler
 export CROSS_COMPILE=arm-linux-gnueabihf-
+ls /arch/arm/configs|grep bcm \\here we use from bcm2709
+make bcm2709_defconfig
+make menuconfig
+make -j12
+```
+
+> when you want ot make the kernel image, some times may you face with <br />
+> `lib mpc.h not found` after you type `make -j12`<br />
+> you have to install this package: <br />
+> `sudo apt-get install libmpc-dev`
+
+your generated kernel image is in `/arch/arm/boot`
 
 
 
@@ -185,9 +194,7 @@ export CROSS_COMPILE=arm-linux-gnueabihf-
 
 
 
-when you want ot make the kernel image, some times may you face with 
-`sudo apt-get install libmpc-dev` after you type `make -j12` for example 
-you have to install this package: 
-`sudo apt-get install libmpc-dev`
+
+
 
 
