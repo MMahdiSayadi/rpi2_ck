@@ -186,12 +186,13 @@ make -j12
 > `sudo apt-get install libmpc-dev`
 
 your generated kernel image is in `/arch/arm/boot`
+>> Note that for rpi2 you have to use from `zImage`.
 
 ### Loading Kernel
 Connect your SD card to your host
 ```
 cd sdcard 
-sudo cp -r ../linux-rpi-5.15.y/arch/arm/boot/Image .
+sudo cp -r ../linux-rpi-5.15.y/arch/arm/boot/zImage .
 sudo umount /dev/sdb*
 cd ..
 sudo mount /dev/sdb1 mntp
@@ -200,17 +201,45 @@ sudo umount mntp
 ```
 Eject SD card and connect it to the target 
 #### target part
+for booting rpi2 your have to use `bootz`, while for rpi4 `booti` should be used.
 ```
 sudo picocom -b 115200 /dev/ttyUSB0
 setenv serverip 192.168.1.101
 setenv netmask 255.255.255.0
 setenv ipaddr 192.168.1.60
-setenv bootcmd 'fatload mmc 0:1 ${kernel_addr_r} Image; load mmc 0:1 ${fdt_addr_r} bcm2711-rpi-4-b.dtb; booti ${kernel_addr_r} - ${fdt_addr}'
+setenv bootcmd 'fatload mmc 0:1 ${kernel_addr_r} zImage; load mmc 0:1 ${fdt_addr_r} bcm2711-rpi-4-b.dtb; bootz ${kernel_addr_r} - ${fdt_addr}'
 setenv bootargs console=ttyS0,115200 8250.nr_uarts=1 swiotlb=128 root=/dev/nfs ip=192.168.1.60 nfsroot=192.168.1.101:/mnt/rootfs,nfsvers=3,tcp init=/myinit rw
 saveenv 
 res
 ```
+if everythis is ok you have to see `kernel panic error`.
 
+# 4. Busubox as initfile
+```
+cd rpi2
+mkdir rootfs
+wget https://github.com/mirror/busybox/archive/refs/heads/master.zip
+mv busybox-master busybox
+cd busybox
+export PATH=~/x-tools/armv7-rpi2-linux-gnueabihf/bin/:$PATH
+export CROSS_COMPILE=armv7-rpi2-linux-gnueabihf-
+\\ if you use from prebuilt compiler
+export CROSS_COMPILE=arm-linux-gnueabihf-
+sudo make defconfig
+sudo make menuconfig
+```
+in the `menuconfig` you have to apply below changes: 
+
+ 1. in the `Setting` activate `Build static binary (no shared libs)`
+ 2. in the `Destination path for make install` type `../rootfs`
+
+```
+make -j12
+make install
+ls ../rootfs
+```
+
+> generate `linuxrc` is the `init` file.
 
 
 
