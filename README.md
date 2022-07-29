@@ -99,7 +99,7 @@ sudo apt-get install gcc-arm-linux-gnueabihf
 > All the processes for this part is similar to part one, except build it, and export path. <br />
 > Here you do not need to export path because the compiler instslled on the default directory of you linux.<br />
 
- 2.# Build a Bootloader
+ # 2. Build a Bootloader
 
 ### Download and install Bootloader
 ```
