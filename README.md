@@ -2,8 +2,17 @@
 rpi2 custom kernel
 
 ## index 
-Extra Details came in the rpi repo, and this is the summery of how you can build a custom kernel for rpi2.
+Extra Details came in the rpi4 repo, and this is the summery of how you can build a custom kernel for rpi2.
 
+## total steps 
+
+total steps of creating custom kernel list in below: 
+ * 1. first you need to build the cross-compiler
+ * 2. as the second step you have to build and prepare the bootloader.
+ * 3. build and prepare the kernel image 
+ * 4. build and install busy box and the kernel init file 
+ * 5. run the kernel 
+ 
 
 # 1. Build a Cross Compiler
 
