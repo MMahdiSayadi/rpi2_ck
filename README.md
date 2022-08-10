@@ -23,15 +23,16 @@ sudo chmode +x rpi2Imgen.sh
 ```
 after run the rpi2Imgen the following subfolder is created: 
 
-.
-└── rpi2scr
-    ├── apps
-    ├── crosstool-ng
-    ├── finalsdcard
-    ├── mntp
-    ├── rpi-5.15.y.zip
-    ├── sdcard
-    └── u-boot
+.<br />
+└── rpi2scr<br />
+    ├── apps<br />
+    ├── crosstool-ng<br />
+    ├── finalsdcard<br />
+    ├── mntp<br />
+    ├── rpi-5.15.y.zip<br />
+    ├── sdcard<br />
+    └── u-boot<br />
+    
 above files created by the `rp2Imgen.sh` file.
 
 # 1. Build a Cross Compiler
