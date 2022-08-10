@@ -15,7 +15,24 @@ total steps of creating custom kernel list in below:
 Note that you have to download `rpi2Imgen.sh` from this repo and run it. this .sh file build all the needed file for you, and after that you only need to build the mentioned tools.
 
 # Download and run `rpi2Imgen.sh`
+> Hint : using `chmod` command you give the executable permission to your application
+```
+wget https://github.com/MMahdiSayadi/rpi2_ck/blob/main/rpi2Imgen.sh
+sudo chmode +x rpi2Imgen.sh 
+./rpi2Imgen.sh rpi2scr
+```
+after run the rpi2Imgen the following subfolder is created: 
 
+.
+└── rpi2scr
+    ├── apps
+    ├── crosstool-ng
+    ├── finalsdcard
+    ├── mntp
+    ├── rpi-5.15.y.zip
+    ├── sdcard
+    └── u-boot
+above files created by the `rp2Imgen.sh` file.
 
 # 1. Build a Cross Compiler
 
