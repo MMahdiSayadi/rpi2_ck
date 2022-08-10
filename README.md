@@ -7,12 +7,12 @@ Extra Details came in the rpi4 repo, and this is the summery of how you can buil
 ## total steps 
 
 total steps of creating custom kernel list in below: 
- * 1. first you need to build the cross-compiler
- * 2. as the second step you have to build and prepare the bootloader.
- * 3. build and prepare the kernel image 
- * 4. build and install busy box and the kernel init file 
- * 5. run the kernel 
- 
+ *  first you need to build the cross-compiler
+ *  as the second step you have to build and prepare the bootloader.
+ *  build and prepare the kernel image 
+ *  build and install busy box and the kernel init file 
+ *  run the kernel 
+ Note that you have to download `rpi2Imgen.sh` from this repo and run it. this .sh file build all the needed file for you, and after that you only need to build the mentioned tools.
 
 # 1. Build a Cross Compiler
 
