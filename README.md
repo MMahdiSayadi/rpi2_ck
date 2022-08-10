@@ -11,8 +11,11 @@ total steps of creating custom kernel list in below:
  *  as the second step you have to build and prepare the bootloader.
  *  build and prepare the kernel image 
  *  build and install busy box and the kernel init file 
- *  run the kernel 
- Note that you have to download `rpi2Imgen.sh` from this repo and run it. this .sh file build all the needed file for you, and after that you only need to build the mentioned tools.
+ *  run the kernel <br />
+Note that you have to download `rpi2Imgen.sh` from this repo and run it. this .sh file build all the needed file for you, and after that you only need to build the mentioned tools.
+
+# Download and run `rpi2Imgen.sh`
+
 
 # 1. Build a Cross Compiler
 
