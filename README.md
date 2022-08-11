@@ -24,14 +24,16 @@ sudo chmode +x rpi2Imgen.sh
 after run the rpi2Imgen the following subfolder is created: 
 
 .<br />
-└── rpi2scr<br />
+└── rpi2scr <br />
     ├── apps<br />
+    ├── busybox<br />
     ├── crosstool-ng<br />
     ├── finalsdcard<br />
+    ├── linux<br />
     ├── mntp<br />
-    ├── rpi-5.15.y.zip<br />
     ├── sdcard<br />
     └── u-boot<br />
+
     
 above files created by the `rp2Imgen.sh` file.
 
