@@ -25,14 +25,14 @@ after run the rpi2Imgen the following subfolder is created:
 
 .<br />
 └── rpi2scr <br />
-        ├── apps<br />
-        ├── busybox<br />
-        ├── crosstool-ng<br />
-        ├── finalsdcard<br />
-        ├── linux<br />
-        ├── mntp<br />
-        ├── sdcard<br />
-        └── u-boot<br />
+.       ├── apps<br />
+.       ├── busybox<br />
+.       ├── crosstool-ng<br />
+.       ├── finalsdcard<br />
+.       ├── linux<br />
+.       ├── mntp<br />
+.       ├── sdcard<br />
+.       └── u-boot<br />
 
     
 above files created by the `rp2Imgen.sh` file.
