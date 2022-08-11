@@ -25,7 +25,7 @@ after run the rpi2Imgen the following subfolder is created:
 
 .<br />
 └── rpi2scr <br />
-   ├── apps<br />
+├── apps<br />
 ├── busybox<br />
 ├── crosstool-ng<br />
 ├── finalsdcard<br />
@@ -35,7 +35,8 @@ after run the rpi2Imgen the following subfolder is created:
 └── u-boot<br />
 
     
-above files created by the `rp2Imgen.sh` file.
+above files created by the `rp2Imgen.sh` file. these files are created in the following directory of your PC:
+`~/Project/EL/el/`
 
 # 1. Build a Cross Compiler
 
@@ -46,31 +47,23 @@ Here you have to options:
 ## Build the Cross-Compiler
 
 Steps: 
-### 1. Make rpi directory<br />
 
-`mkdir rpi2` 
+Go to the crosstool-ng folder which created by `rpi1Imgen.sh` 
 
-### 2. Downlaod the Crosstool-ng (here we use release-1.25.0-rc1)<br />
-```
-cd rpi2
-wget http://crosstool-ng.org/download/crosstool-ng/crosstool-ng-1.25.0_rc1.tar.xz
-tar -xf crosstool-ng-1.25.0_rc1.tar.xz
-mv crosstool-ng-1.25.0_rc1.tar.xz crosstool-ng
-```
-
-### 3. Install Crosstool-ng dependencies <br />
+### 1. Install Crosstool-ng dependencies <br />
 you can see the requirements in the `Dockerfile` came in below<br />
 ```
 cd crosstool-ng 
 ls ../crosstool-ng/testing/docker/ubuntu21.10/Dockerfile
+sudo apt install <crosstool-ng_DEPfiles>
 ```
-### 4. Build Crosstool-ng <br />
+### 2. Build Crosstool-ng <br />
 ```
 ./bootstrap
 ./configure --enable-local
 ./make 
 ```
-### 5. Build Cross Compiler using Crosstool-ng <br />
+### 3. Build Cross Compiler using Crosstool-ng <br />
 ```
 ./ct-ng list-samples|grep rpi2
 ./ct-ng armv7-rpi2-linux-gnueabihf
@@ -85,26 +78,9 @@ make -j12
 >> `~/x-tools/armv7-rpi2-linux-gnueabihf/bin`<br />
 ### 6. Test the installation<br />
 you have to install `qemu`, `qemu` is an emulator which allows you to emulate your target using your host.
-#### 6.1 install qemu
-cd to rpi directory
-```
-cd ..
-sudo apt update
-sudo apt install qemu-user
-```
-#### 6.2 create some .c programm
-```
-gedit main.c
-********* text inside *********
-#include<sdtio.h>
-int main()
-{
- printf("hello world\n");
- return 0;
-}
-*******************************
-```
-#### 6.3 Compile it
+
+#### 6.3 Compile the main program
+go to the app folder
 for host<br />
 ```
 gcc main.c -o app
@@ -134,11 +110,8 @@ sudo apt-get install gcc-arm-linux-gnueabihf
  # 2. Build a Bootloader
 
 ### Download and install Bootloader
+go to the u-boot folder
 ```
-wget https://source.denx.de/u-boot/u-boot/-/archive/master/u-boot-master.tar.gz
-tar -xf u-boot-master.tar.gz
-mv u-boot-master u-boot
-cd u-boot
 ls configs|grep rpi \\here we use rpi2-defconfig
 make rpi_2_defconfig
 export PATH=~/x-tools/armv7-rpi2-linux-gnueabihf/bin/:$PATH
@@ -152,9 +125,7 @@ make
 
 ## Prepare SD card for booting target 
 ```
-cd ..
-mkdir sdcard
-cd sdcard
+cd ../sdcard
 cp ../u-boot/u-boot.bin .
 ```
 Download the Content of SD card in thid repo and paste them into the `sdcard` folder.<br />
@@ -195,11 +166,8 @@ res \\ to restart
 ```
 
 # 3. Build Kernel
-
+go to linux folder (for generating your own linux kernel) <br />
 ```
-wget https://github.com/raspberrypi/linux/archive/refs/heads/rpi-5.15.y.zip 
-unzip rpi-5.15.y.zip 
-cd linux-rpi-5.15.y
 export ARCH=arm
 \\ if you use from your compiler
 export PATH=~/x-tools/armv7-rpi2-linux-gnueabihf/bin/:$PATH
@@ -247,12 +215,9 @@ res
 if everythis is ok you have to see `kernel panic error`.
 
 # 4. Busybox as init file
+go to the busybox folder:
 ```
-cd rpi2
-mkdir rootfs
-wget https://github.com/mirror/busybox/archive/refs/heads/master.zip
-mv busybox-master busybox
-cd busybox
+cd ../busybox
 export PATH=~/x-tools/armv7-rpi2-linux-gnueabihf/bin/:$PATH
 export CROSS_COMPILE=armv7-rpi2-linux-gnueabihf-
 \\ if you use from prebuilt compiler
